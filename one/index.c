@@ -58,30 +58,6 @@ void err()
 }
 
 /**
- * 当定义一个变量可以没有初始值
- * 此时变量的初始值取决于该内存是否有被其他程序占用并赋值
- */
-void typeope()
-{
-	char c;
-	printf("%c\n", c);
-	int i;
-	printf("%d\n", i);
-	short s;
-	printf("%d\n", s);
-	long l;
-	printf("%d\n", l);
-	float f;
-	printf("%f\n", f);
-	double b;
-	printf("%f\n", b);
-	char *ch;
-	printf("%s", ch);
-	char *p;
-	printf("%p", p);
-}
-
-/**
  * scanf返回值代表匹配的数值个数0则表示没有匹配输入
  */
 void inope0()
@@ -96,31 +72,56 @@ void inope0()
 
 /**
  * 输出所有的命令行的输入参数
+ * argc 输入的参数个数 包括程序命令本身 所以argc>=1
+ * argv 输入的参数以二维数组形式存储
+ * 		argv 类型是char ** 一个指向指针的指针
+ * 		argv 表示存放二维数组地址的地址
+ * 		*argv 既是argv地址指向内存的存放内容也是二维数组第一个元素的地址
+ * 		**argv 即二维数组第一个元素内容
  */
-void inope(int argc, char const *argv[])
+void inope(int argc, char *argv[])
 {
-	//
-	printf("arguments count:%d\n", argc);
-	for (int i = 0; i < argc;)
+	int i, j, z;
+	printf("argument counts:%d\n", argc);
+	for (i = 0; i < argc; i++)
 	{
-		printf("%d.%s\n", ++i, argv[i]);
+		printf("%d.%p%9s\n", i, argv[i], argv[i]);
+		// printf("%d.%p%9s\n", i, *(argv + i), *(argv + i));
+		for (z = 0; z < strlen(argv[i]); z++)
+		{
+			printf("%p,%c\n", argv[i][z], argv[i][z]);
+			// printf("%p,%c\n", *(argv[i] + z), *(argv[i] + z));
+		}
 	}
 
-	// if ('3' == *argv[1])
-	// {
-	// 	printf("test single char is ok\n");
-	// }
+	printf("argv addr:%p,%p\n", argv, *argv);
+	for (j = 0; j < argc; j++)
+	{
+		printf("%d.%p\n", j, *(argv + j));
+	}
 
-	// char *msg = "hhs56@667*本不耐热";
-	// if (*msg == *argv[2])
-	// {
-	// 	printf("test string is ok\n");
-	// }
+	char *ss1 = "ok";
+	int r1 = strcmp(ss1, argv[1]);
+	printf("%s compare argv[1]:%d\n", ss1, r1);
+	char *ss2;
+	strcpy(ss2, "iamok");
+	printf("%s\n", ss2);
+	
 }
 
-int main(int argc, char const *argv[])
+void test()
 {
+	putchar(65);
+	putchar('a');
+	putchar('\n');
+}
+
+int main(int argc, const char *argv[])
+{
+	puts("hello world");
+	test();
 	inope(argc, argv);
-	typeope();
+	// char *ss[] = {"abc", "def", "ghi", "jkl"};
+	// inope(4, ss);
 	return 0;
 }

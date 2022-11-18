@@ -193,21 +193,34 @@
     #define _HEAD_H
     #endif
     ```
-11. printf 格式化输出
-    - %a(%A) 浮点数、十六进制数字和p-(P-)记数法(C99)
-    - %c 字符
-    - %d 有符号十进制整数
-    - %i 有符号十进制整数(与%d相同)
-    - %u 无符号十进制整数
-    - %ld 长整型
-    - %f 浮点数(包括float和doulbe)
-    - %e(%E) 浮点数指数输出[e-(E-)记数法]
-    - %g(%G) 浮点数不显无意义的零"0"
-    - %o 八进制整数 e.g. 0123
-    - %x(%X) 十六进制整数
+11. printf 格式化输出(%[flag][width][.precision]type)
     - %p 指针
+    - %c 字符
     - %s 字符串
-    - %% 百分比
+    - %hd、%d、%ld 以十进制、有符号的形式输出 short、int、long 类型的整数
+    - %hu、%u、%lu 以十进制、无符号的形式输出 short、int、long 类型的整数
+    - %ho、%o、%lo 以八进制、不带前缀、无符号的形式输出 short、int、long 类型的整数
+    - %#ho、%#o、%#lo 以八进制、带前缀、无符号的形式输出 short、int、long 类型的整数
+    - %hx、%x、%lx 以十六进制、不带前缀、无符号的形式输出 short、int、long 类型的整数
+    - %hX、%X、%lX 以十六进制、不带前缀、无符号的形式输出 short、int、long 类型的整数 字母大写
+    - %#hx、%#x、%#lx 以十六进制、带前缀、无符号的形式输出 short、int、long 类型的整数
+    - %#hX、%#X、%#lX 以十六进制、带前缀、无符号的形式输出 short、int、long 类型的整数 字母大写
+    - %f、%lf 以十进制的形式输出 float、double 类型的小数
+    - %e、%le 以指数的形式输出 float、double 类型的小数
+    - %E、%lE 以指数的形式输出 float、double 类型的小数 字母大写
+    - %g、%lg 以十进制和指数中较短的形式输出 float double 类型的小数并且小数部分的最后不会添加多余的0
+    - %G、%lG 以十进制和指数中较短的形式输出 float double 类型的小数并且小数部分的最后不会添加多余的0 字母大写
+    - -左对齐
+    - +显示运算符(默认只有负数会显示-)
+    - 空格 用空格代替显示符
+    - #为八进制和十六进制添加前缀0、0x、0X，强制显示小数点
+12. 二维数组指针地址和内存
+    + `char *ss[] = {"abc", "def", "ghi", "jkl"};`
+    +  argv 输入的参数以二维数组形式存储 类型是char ** 一个指向指针的指针
+    +  argv 表示存放二维数组地址的地址
+    +  *argv 既是argv地址指向内存的存放内容也是二维数组第一个元素的地址
+    +  **argv 即二维数组第一个元素内容
+    + ![指针内存](charptr.jpg)
 ### JNI
 1. java源代码编译成class  
     javac HelloJNI.java
@@ -327,3 +340,13 @@
         - 有名字 可以通过文件名打开
         - 写入原子性
         - 适合多进程写入 数据量少
+### 常用头文件函数
+1. `ctype.h`
+    + isalpha   判断字符是否是字母
+    + isblank   判断字符是否为空
+    + toupper   转换字母为大写形式
+    + tolower   转换字母为小写形式
+2. `string.h`
+    + strlen    计算字符串长度
+    + strcmp    比较两个字符串是否相等
+    + strcpy    复制字符串
