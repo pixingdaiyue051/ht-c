@@ -5,7 +5,7 @@ typedef int cl_dt;
 
 /**
  * 双向循环链表
- * */
+ **/
 typedef struct CIRCLE_LIST
 {
     struct CIRCLE_LIST *pre;
@@ -64,7 +64,7 @@ static inline void __cl_free(cl_t *pos, cl_t *pos1)
 
 /**
  * 从任意节点开始清空链表
- * */
+ **/
 void cl_free(cl_t *pos)
 {
     __cl_free(pos, pos->next);
@@ -72,7 +72,7 @@ void cl_free(cl_t *pos)
 
 /**
  * 从任意节点开始顺序输出全部节点
- * */
+ **/
 void cl_next_print(cl_t *pos)
 {
     printf("%d\n", pos->data);
@@ -84,7 +84,7 @@ void cl_next_print(cl_t *pos)
 
 /**
  * 从任意节点开始倒序输出全部节点
- * */
+ **/
 void cl_pre_print(cl_t *pos)
 {
     printf("%d\n", pos->data);

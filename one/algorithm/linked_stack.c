@@ -1,27 +1,13 @@
+/**
+ * 链式栈 无需设定栈的大小
+ **/
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-
-typedef int ls_dt;
+#include "linked_stack.h"
 
 /**
- * 链式栈节点
- * */
-typedef struct STACK_NODE
-{
-    ls_dt data;
-    struct STACK_NODE *next;
-} sn_t;
-
-/**
- * 链式栈栈顶
- * */
-typedef struct LINKED_STACK
-{
-    sn_t *top;
-    int size;
-} ls_t;
-
+ * 初始化栈
+ **/
 ls_t *ls_init()
 {
     ls_t *stack = (ls_t *)malloc(sizeof(ls_t));
@@ -30,7 +16,10 @@ ls_t *ls_init()
     return stack;
 }
 
-bool ls_is_empty(ls_t *stack)
+/**
+ * 判断栈是否空
+ **/
+int ls_is_empty(ls_t *stack)
 {
     return stack->size == 0;
 }
@@ -45,8 +34,8 @@ static inline sn_t *__ls_create(ls_dt data)
 
 /**
  * 入栈
- * */
-bool ls_push(ls_t *stack, ls_dt data)
+ **/
+int ls_push(ls_t *stack, ls_dt data)
 {
     sn_t *node = __ls_create(data);
     // 新节点后继节点指向当前栈顶
@@ -54,26 +43,26 @@ bool ls_push(ls_t *stack, ls_dt data)
     // 栈顶指向新节点
     stack->top = node;
     ++stack->size;
-    return true;
+    return 1;
 }
 
 /**
  * 读栈顶元素
- * */
-bool ls_peek(ls_t *stack, ls_dt *pm)
+ **/
+int ls_peek(ls_t *stack, ls_dt *pm)
 {
     if (ls_is_empty(stack))
     {
-        return false;
+        return 0;
     }
     *pm = stack->top->data;
-    return true;
+    return 1;
 }
 
 /**
  * 出栈
- * */
-bool ls_pop(ls_t *stack, ls_dt *pm)
+ **/
+int ls_pop(ls_t *stack, ls_dt *pm)
 {
     if (ls_peek(stack, pm))
     {
@@ -82,35 +71,35 @@ bool ls_pop(ls_t *stack, ls_dt *pm)
         stack->top = s->next;
         free(s);
         --stack->size;
-        return true;
+        return 1;
     }
-    return false;
+    return 0;
 }
 
-/**
- * 清空节点
- * */
-static inline void __sn_free(sn_t *s)
+static inline void __ls_free(sn_t *s)
 {
     if (s->next != NULL)
     {
-        __sn_free(s->next);
+        __ls_free(s->next);
     }
     free(s);
 }
 
 /**
  * 清空栈
- * */
+ **/
 void ls_free(ls_t *stack)
 {
     if (!ls_is_empty(stack))
     {
-        __sn_free(stack->top);
+        __ls_free(stack->top);
     }
     free(stack);
 }
 
+/**
+ * 输出栈内元素 不清数据
+ **/
 void ls_print(ls_t *stack)
 {
     if (ls_is_empty(stack))

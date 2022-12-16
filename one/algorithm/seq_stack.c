@@ -1,19 +1,13 @@
+/**
+ * 顺序栈 预先设定好栈大小
+ **/
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-
-typedef int ss_dt;
+#include "seq_stack.h"
 
 /**
- * 顺序栈
- * */
-typedef struct SEQ_STACK
-{
-    ss_dt *data;
-    int capacity;
-    int top;
-} ss_t;
-
+ * 初始化栈
+ **/
 ss_t *ss_init(int capacity)
 {
     ss_t *stack = (ss_t *)malloc(sizeof(ss_t));
@@ -24,62 +18,68 @@ ss_t *ss_init(int capacity)
     return stack;
 }
 
-bool ss_is_full(ss_t *stack)
+/**
+ * 判断栈是否已满
+ **/
+int ss_is_full(ss_t *stack)
 {
     return stack->top == stack->capacity - 1;
 }
 
-bool ss_is_empty(ss_t *stack)
+/**
+ * 判断栈是否空
+ **/
+int ss_is_empty(ss_t *stack)
 {
     return stack->top == -1;
 }
 
 /**
  * 入栈
- * */
-bool ss_push(ss_t *stack, ss_dt d)
+ **/
+int ss_push(ss_t *stack, ss_dt d)
 {
     if (ss_is_full(stack))
     {
-        return false;
+        return 1;
     }
     // 栈顶索引自增
     ++stack->top;
     // 赋值栈顶
     stack->data[stack->top] = d;
-    return true;
+    return 0;
 }
 
 /**
  * 读栈顶元素
- * */
-bool ss_peek(ss_t *stack, ss_dt *pm)
+ **/
+int ss_peek(ss_t *stack, ss_dt *pm)
 {
     if (ss_is_empty(stack))
     {
-        return false;
+        return 0;
     }
     *pm = stack->data[stack->top];
-    return true;
+    return 1;
 }
 
 /**
  * 出栈
- * */
-bool ss_pop(ss_t *stack, ss_dt *pm)
+ **/
+int ss_pop(ss_t *stack, ss_dt *pm)
 {
     if (ss_peek(stack, pm))
     {
         // 栈顶索引自减
         --stack->top;
-        return true;
+        return 1;
     }
-    return false;
+    return 0;
 }
 
 /**
  * 清空栈
- * */
+ **/
 void ss_free(ss_t *stack)
 {
     free(stack->data);

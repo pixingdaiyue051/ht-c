@@ -5,7 +5,7 @@
 
 // /**
 //  * 单向链表
-//  * */
+//  **/
 // typedef struct LINKED_LIST
 // {
 //     ll_dt data;
@@ -22,7 +22,7 @@
 
 // /**
 //  * 查询尾节点
-//  * */
+//  **/
 // static ll_t *__ll_tail(ll_t *pos)
 // {
 //     ll_t *p = pos;
@@ -36,7 +36,7 @@
 // /**
 //  * 从头节点开始
 //  * 查询curr前继节点
-//  * */
+//  **/
 // static ll_t *__ll_pre(ll_t *head, ll_t *curr)
 // {
 //     ll_t *p = head;
@@ -68,7 +68,7 @@
 
 // /**
 //  * 清空链表
-//  * */
+//  **/
 // void ll_free(ll_t *head)
 // {
 //     if (head->next != NULL)
@@ -80,7 +80,7 @@
 
 // /**
 //  * 顺序输出全部节点
-//  * */
+//  **/
 // void ll_print(ll_t *head)
 // {
 //     ll_t *p = head;

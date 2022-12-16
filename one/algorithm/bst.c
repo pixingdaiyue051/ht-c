@@ -27,7 +27,7 @@ bst_t *bst_init(bst_dt data)
 /**
  * 将node插入到root节点中
  * root作为第一次判断时的根节点 递归调用
- * */
+ **/
 bst_t *bst_insert(bst_t *root, bst_t *node)
 {
     if (root == NULL)
@@ -49,7 +49,7 @@ bst_t *bst_insert(bst_t *root, bst_t *node)
 /**
  * 从root中删除data
  * root作为第一次判断时的root 递归调用
- * */
+ **/
 bst_t *bst_remove(bst_t *root, bst_dt data)
 {
     if (root == NULL)

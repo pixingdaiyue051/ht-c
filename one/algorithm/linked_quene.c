@@ -6,7 +6,7 @@ typedef int lq_dt;
 
 /**
  * 链式队列节点
- * */
+ **/
 typedef struct QUENE_NODE
 {
     lq_dt data;
@@ -15,7 +15,7 @@ typedef struct QUENE_NODE
 
 /**
  * 链式队列
- * */
+ **/
 typedef struct LINKED_QUENE
 {
     qn_t *front;
@@ -46,7 +46,7 @@ static inline qn_t *__lq_create(lq_dt data)
 
 /**
  * 入队-在队尾追加
- * */
+ **/
 bool lq_add(lq_t *quene, lq_dt data)
 {
     qn_t *node = __lq_create(data);
@@ -70,7 +70,7 @@ bool lq_add(lq_t *quene, lq_dt data)
 
 /**
  * 读队首元素
- * */
+ **/
 bool lq_peek(lq_t *quene, lq_dt *pm)
 {
     if (lq_is_empty(quene))
@@ -83,7 +83,7 @@ bool lq_peek(lq_t *quene, lq_dt *pm)
 
 /**
  * 出队-读队首
- * */
+ **/
 bool lq_poll(lq_t *quene, lq_dt *pm)
 {
     if (lq_peek(quene, pm))
@@ -109,7 +109,7 @@ static inline void __lq_free(qn_t *node)
 
 /**
  * 清空队列
- * */
+ **/
 void lq_free(lq_t *quene)
 {
     if (!lq_is_empty(quene))
@@ -121,7 +121,7 @@ void lq_free(lq_t *quene)
 
 // /**
 //  * 先进先出输出所有数据,不出队
-//  * */
+//  **/
 // void lq_print(lq_t *quene)
 // {
 //     if (lq_is_empty(quene))

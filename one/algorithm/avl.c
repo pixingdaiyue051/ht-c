@@ -27,7 +27,7 @@ avl_t *avl_init(avl_dt data)
 /**
  * 将node插入到root节点中
  * root作为第一次判断时的根节点 递归调用
- * */
+ **/
 avl_t *avl_insert(avl_t *root, avl_t *node)
 {
     if (root == NULL)
@@ -49,7 +49,7 @@ avl_t *avl_insert(avl_t *root, avl_t *node)
 /**
  * 从root中删除data
  * root作为第一次判断时的root 递归调用
- * */
+ **/
 avl_t *avl_remove(avl_t *root, avl_dt data)
 {
     if (root == NULL)

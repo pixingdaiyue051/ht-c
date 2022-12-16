@@ -6,7 +6,7 @@ typedef int sq_dt;
 
 /**
  * 顺序队列 循环队列
- * */
+ **/
 typedef struct SEQ_QUENE
 {
     sq_dt *data;
@@ -46,7 +46,7 @@ static inline int __step_next(int p, int capacity)
 
 /**
  * 入队-在队尾追加
- * */
+ **/
 bool sq_add(sq_t *quene, sq_dt data)
 {
     if (sq_is_full(quene))
@@ -60,7 +60,7 @@ bool sq_add(sq_t *quene, sq_dt data)
 
 /**
  * 读队首元素
- * */
+ **/
 bool sq_peek(sq_t *quene, sq_dt *pm)
 {
     if (sq_is_empty(quene))
@@ -73,7 +73,7 @@ bool sq_peek(sq_t *quene, sq_dt *pm)
 
 /**
  * 出队-读队首
- * */
+ **/
 bool sq_poll(sq_t *quene, sq_dt *pm)
 {
     if (sq_peek(quene, pm))
@@ -86,7 +86,7 @@ bool sq_poll(sq_t *quene, sq_dt *pm)
 
 /**
  * 先进先出输出所有数据,不出队
- * */
+ **/
 void sq_print(sq_t *quene)
 {
     if (sq_is_empty(quene))
@@ -117,7 +117,7 @@ void sq_print(sq_t *quene)
 
 /**
  * 清空队列
- * */
+ **/
 void sq_free(sq_t *quene)
 {
     free(quene->data);
