@@ -1,6 +1,6 @@
 CFLAGS=-Wall -g
 
-clean:
+cleanext:
         rm -f ext
 cleanextout:
         rm -f ext.out mystr.o

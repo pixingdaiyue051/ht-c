@@ -18,10 +18,11 @@ void ext0()
 	printf("size of double:%lu,d=%lf\n", sizeof(double), d);
 	printf("size of char:%lu,c=%c\n", sizeof(char), c);
 
-	unsigned int ui = -100;
-	unsigned long ul = -100;
-	unsigned short us = -100;
+	int ui = -100;
+	long ul = -100;
+	short us = -100;
 	printf("%hu,%u,%lu\n", us, ui, ul);
+	printf("%hd,%d,%ld\n", us, ui, ul);
 
 	char nul = '\b';
 	double r = d * nul;
@@ -50,12 +51,6 @@ void ext1()
 
 void test()
 {
-	// int r = compareStr("", "");
-	// if (r)
-	// {
-	// 	printf("test ok\n");
-	// }
-
 	char ch = 88;
 	int r1 = isalpha(ch);
 	printf("%c is alpha:%d\n", ch, r1);
@@ -73,7 +68,18 @@ void test()
 
 int main(int argc, const char *argv[])
 {
-	test();
+	ext0();
 	// ext1();
+	// test();
+
+	// int r = compareStr(argv[1], argv[2]);
+	// if (r)
+	// {
+	// 	printf("test ok\n");
+	// }
+
+	// r = transferStr2Int(argv[1]);
+	// printf("%s transfer to %d\n", argv[1], r);
+
 	return 0;
 }

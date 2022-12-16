@@ -11,4 +11,9 @@ int caculateStrLen(char *s);
  */
 int compareStr(char *s1, char *s2);
 
+/**
+ * 将字符串转换成数字 实现atoi
+ */
+int transferStr2Int(char *s);
+
 #endif

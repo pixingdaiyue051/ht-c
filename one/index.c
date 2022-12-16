@@ -21,7 +21,7 @@
 /**
  *  利用宏定义代替函数实现
  *  由于宏定义在代码编译阶段是简单代码片段替换 某些情况下会比使用函数更高效
- */
+ **/
 void def()
 {
 	float a1 = ADD(3.1, 4.6);
@@ -43,11 +43,11 @@ void def()
 
 /**
  *  输出错误内容
- */
+ **/
 void err()
 {
 	FILE *pf;
-	pf = fopen("../out/test.txt", "rb");
+	pf = fopen("/data/c_test/test.txt", "rb");
 	if (pf == NULL)
 	{
 		perror("err num");
@@ -59,7 +59,7 @@ void err()
 
 /**
  * scanf返回值代表匹配的数值个数0则表示没有匹配输入
- */
+ **/
 void inope0()
 {
 	int n;
@@ -78,50 +78,51 @@ void inope0()
  * 		argv 表示存放二维数组地址的地址
  * 		*argv 既是argv地址指向内存的存放内容也是二维数组第一个元素的地址
  * 		**argv 即二维数组第一个元素内容
- */
+ **/
 void inope(int argc, char *argv[])
 {
-	int i, j, z;
+	int i, j;
 	printf("argument counts:%d\n", argc);
 	for (i = 0; i < argc; i++)
 	{
 		printf("%d.%p%9s\n", i, argv[i], argv[i]);
-		// printf("%d.%p%9s\n", i, *(argv + i), *(argv + i));
-		for (z = 0; z < strlen(argv[i]); z++)
+		// printf("%d.%p%9s\n", i, argv + i, *(argv + i));
+		for (j = 0; j < strlen(argv[i]); j++)
 		{
-			printf("%p,%c\n", argv[i][z], argv[i][z]);
-			// printf("%p,%c\n", *(argv[i] + z), *(argv[i] + z));
+			printf("%p,%c\n", &argv[i][j], argv[i][j]);
+			// printf("%p,%c\n", argv[i] + j, *(argv[i] + j));
 		}
 	}
-
-	printf("argv addr:%p,%p\n", argv, *argv);
-	for (j = 0; j < argc; j++)
-	{
-		printf("%d.%p\n", j, *(argv + j));
-	}
-
-	char *ss1 = "ok";
-	int r1 = strcmp(ss1, argv[1]);
-	printf("%s compare argv[1]:%d\n", ss1, r1);
-	char *ss2;
-	strcpy(ss2, "iamok");
-	printf("%s\n", ss2);
-	
 }
 
 void test()
 {
+	puts("hello world");
 	putchar(65);
 	putchar('a');
 	putchar('\n');
+
+	int c = 0;
+	if(c) // 0以外都是true
+	{
+		puts("true");
+	}
+
+	short h1 = 10 & 2;
+	short h2 = 10 | 2;
+	short h3 = 10 ^ 2;
+	short h4 = ~2;
+	printf("与:%d\n", h1);
+	printf("或:%d\n", h2);
+	printf("异或:%d\n", h3);
+	printf("非:%d,%hu\n", h4, h4);
 }
 
 int main(int argc, const char *argv[])
 {
-	puts("hello world");
 	test();
-	inope(argc, argv);
-	// char *ss[] = {"abc", "def", "ghi", "jkl"};
-	// inope(4, ss);
+	// def();
+	// err();
+	// inope(argc, argv);
 	return 0;
 }
