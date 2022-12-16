@@ -1,8 +1,7 @@
 /**
  *  标准IO c对系统IO的封装
- * 对文件的操作基于 文件指针
- * */
-
+ *  对文件的操作基于 文件指针
+ **/
 #include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
@@ -10,14 +9,13 @@
 
 #define ELE_N 32
 #define ELE_BUF_SIZE 1024
-
 /**
-* 复制文件
-**/
+ * 复制文件
+ **/
 int mycopy(char const *fa, char const *fb)
 {
     FILE *fdr = fopen(fa, "rb"); // r只读 b二进制
-    FILE *fdw = fopen(fb, "ab"); // a只写追加 b二进制
+    FILE *fdw = fopen(fb, "wb"); // a只写追加 b二进制
 
     if (fdr == NULL)
     {
@@ -67,9 +65,18 @@ int mycopy(char const *fa, char const *fb)
     return 0;
 }
 
+void read_file(const char *filename)
+{
+    FILE *f = fopen(filename, "rb");
+    char *buf = calloc(8, 128);
+    int nread = fread(buf, 128, 2, f);
+    printf("%d\n%s\n", nread, buf);
+}
+
 int main(int argc, char const *argv[])
 {
-    mycopy(argv[1], argv[2]);
+    // mycopy(argv[1], argv[2]);
 
+    read_file("/data/c_test/user1.dat");
     return 0;
 }

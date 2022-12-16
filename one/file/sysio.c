@@ -1,8 +1,7 @@
 /**
  *  系统IO linux kernel IO
- * 对文件的操作基于 文件描述符
- * */
-
+ *  对文件的操作基于 文件描述符
+ **/
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -22,7 +21,7 @@
 
 /**
  * 复制文件
- * */
+ **/
 int mycopy(char const *fa, char const *fb)
 {
     int fdr = open(fa, O_RDONLY | O_BINARY);                            // 源文件 只读 二进制
@@ -73,7 +72,7 @@ int mycopy(char const *fa, char const *fb)
 
 /**
  * 文件属性
- * */
+ **/
 int mystat(char const *fa)
 {
     struct stat buf;
@@ -125,7 +124,7 @@ int mystat(char const *fa)
 
 /**
  * 读取文件夹
- * */
+ **/
 int mydir(const char *dd)
 {
     DIR *d = opendir(dd);
@@ -145,12 +144,22 @@ int mydir(const char *dd)
     return 0;
 }
 
+void read_file(const char *filename)
+{
+    int fd = open(filename, O_RDONLY | O_BINARY);
+    char buf[128];
+    int nread = read(fd, buf, 128);
+    printf("%d\n%c\n", nread, buf[0]);
+}
+
 int main(int argc, char const *argv[])
 {
     // mycopy(argv[1], argv[2]);
 
     // mystat(argv[1]);
 
-    mydir(argv[1]);
+    // mydir(argv[1]);
+
+    read_file("/data/c_test/user1.dat");
     return 0;
 }
