@@ -27,10 +27,7 @@ void ext0()
 	char nul = '\b';
 	double r = d * nul;
 	printf("r=%.3lf%%\n", r);
-}
 
-void ext1()
-{
 	char s[] = "i am the king of the world";
 	char *p = "of course i still love you";
 	printf("size of s:%lu,s=%s\n", sizeof(s), s);
@@ -49,7 +46,30 @@ void ext1()
 	printf("name:%s,name1:%s\n", name, name1);
 }
 
-void test()
+void test0()
+{
+	puts("hello world");
+	putchar(65);
+	putchar('a');
+	putchar('\n');
+
+	int c = 0;
+	if(c) // 0以外都是true
+	{
+		puts("true");
+	}
+
+	short h1 = 10 & 2;
+	short h2 = 10 | 2;
+	short h3 = 10 ^ 2;
+	short h4 = ~2;
+	printf("与:%d\n", h1);
+	printf("或:%d\n", h2);
+	printf("异或:%d\n", h3);
+	printf("非:%d,%hu\n", h4, h4);
+}
+
+void test1()
 {
 	char ch = 88;
 	int r1 = isalpha(ch);
@@ -61,25 +81,21 @@ void test()
 	int r4 = tolower(ch);
 	printf("%c lowercase is:%c\n", ch, r4);
 
-	char *str = "54343gg";
+	char *str = "kl86g65";
 	int r5 = strlen(str);
-	printf("%s len is:%d\n", str, r5);
+	printf("%s length is:%d\n", str, r5);
+	int r6 = ht_str_len(str);
+	printf("%s length is:%d\n", str, r6);
+	int r7 = ht_str_cmp("NUL1", "NULL");
+	printf("compared is %d\n", r7);
+	int r8 = ht_str_2int("45264");
+	printf("transfer to %d\n",  r8);
 }
 
 int main(int argc, const char *argv[])
 {
-	ext0();
-	// ext1();
-	// test();
-
-	// int r = compareStr(argv[1], argv[2]);
-	// if (r)
-	// {
-	// 	printf("test ok\n");
-	// }
-
-	// r = transferStr2Int(argv[1]);
-	// printf("%s transfer to %d\n", argv[1], r);
+	// ext0();
+	test1();
 
 	return 0;
 }
