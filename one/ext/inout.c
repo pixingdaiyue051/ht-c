@@ -2,6 +2,7 @@
  * 输入输出
  */
 #include <stdio.h>
+#include <stdlib.h>
 #include "dbg.h"
 
 /**
@@ -15,18 +16,18 @@
  **/
 void inope1(int argc, char *argv[])
 {
-	int i, j;
-	printf("argument counts:%d\n", argc);
-	for (i = 0; i < argc; i++)
-	{
-		printf("%d.%p%9s\n", i, argv[i], argv[i]);
-		// printf("%d.%p%9s\n", i, argv + i, *(argv + i));
-		for (j = 0; j < strlen(argv[i]); j++)
-		{
-			printf("%p,%c\n", &argv[i][j], argv[i][j]);
-			// printf("%p,%c\n", argv[i] + j, *(argv[i] + j));
-		}
-	}
+    int i, j;
+    printf("argument counts:%d\n", argc);
+    for (i = 0; i < argc; i++)
+    {
+        printf("%d.%p%9s\n", i, argv[i], argv[i]);
+        // printf("%d.%p%9s\n", i, argv + i, *(argv + i));
+        for (j = 0; j < strlen(argv[i]); j++)
+        {
+            printf("%p,%c\n", &argv[i][j], argv[i][j]);
+            // printf("%p,%c\n", argv[i] + j, *(argv[i] + j));
+        }
+    }
 }
 
 void outope()
@@ -50,39 +51,36 @@ _ht_error:
  **/
 void inope()
 {
-    // 普通输入 从stdin输入 即键盘
+    // 从stdin读取第一个字符
     char c;
     scanf("%c", &c);
-	// 清空缓冲区 scanf默认不会清除回车符
-	while (getchar() != '\n')
-		;
+    // 清空缓冲区 scanf默认不会清除回车符
+    while (getchar() != '\n')
+        ;
+    printf("c=%c\n", c);
 
-    FILE *f = fopen("/data/c_test/test.txt", "r");
-    _ht_check(f, "failed to open file");
-    fscanf(f, "%c", &c);
+    char ch[5];
+    scanf("%s", ch); // 如果输入的字符超出规定就会报错 不是安全方法
+    // fgets(ch, 5, stdin); // 读取时设定好最多读取字符数 只要设置的和数组大小一致 该方法就是安全的
+    printf("ch=%s\n", ch);
 
-    printf("%c\n", c);
 
-    // // 从缓冲区获取一个字符串
-    // char c = getchar();
-    // printf("0 %c\n", c);
-    // c = getchar();
-    // printf("1 %c\n", c);
-    // c = getchar();
-    // printf("2 %c\n", c);
-    // c = getchar();
-    // printf("3 %c\n", c);
-
-_ht_error:
-    if (f)
-        fclose(f);
+    // 指定从某个输入流中读取第一个字符
+    // FILE *f = fopen("/data/c_test/test.txt", "r");
+    // _ht_check(f, "failed to open file");
+    // fscanf(f, "%c", &c);
+// _ht_error:
+//     if (f)
+//         fclose(f);
 }
 
 int main(int argc, const char *argv[])
 {
-	inope1(argc, argv);
+    // inope1(argc, argv);
     // outope();
-    // inope();
+    inope();
 
+
+    system("pause");
     return 0;
 }

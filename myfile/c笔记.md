@@ -82,7 +82,7 @@
         - 共同体
     - 指针类型
     - 空类型
-    - 布尔值 c没有提供bool类型 `0`即`false` 其他数字都为`true`
+    - 布尔值 c没有提供bool类型 `0`即`false` 其他数字都为`true` 可以引入stdbool.h头文件载使用 不过没有必要
 2. 数据取值范围
     | 数据类型| 字节| 取值范围|
     | :-: | :-: | :-:|
@@ -362,7 +362,7 @@
     + toupper   转换字母为大写形式
     + tolower   转换字母为小写形式
 2. `string.h`
-    + strlen    计算字符串长度
+    + strlen    计算字符串长度 `strlen(s1)`
     + strcmp    比较两个字符串是否相等  `strcmp(s1, s2)`
     + strcpy    复制字符串  `strcpy(s1, s2)`
     + strdup    复制字符串  `char s* = strdup(s1)`

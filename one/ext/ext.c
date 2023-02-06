@@ -1,7 +1,9 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "mystr.h"
 #include <ctype.h>
 #include <string.h>
+#include <stdbool.h>
 
 void ext0()
 {
@@ -46,6 +48,56 @@ void ext0()
 	printf("name:%s,name1:%s\n", name, name1);
 }
 
+enum BOOL
+{
+	FALSE,
+	TRUE
+};
+
+/**
+ * 
+ */
+void ext1()
+{
+	// const 作用于以后的变量类型不可变
+	// 此时a和b都是不可变的
+	const int a = 1;
+	int const b = 2;
+	// 通过使用指针的形式可以间接的修改const变量 但是编译器依然会有警告 而且在c++中无法通过编译 c++类型检查更严格
+	int *pc = &a;
+	printf("%d\n", a);
+	*pc = 100;
+	printf("%d\n", a);
+
+	// 此时*pm不可变 pm是指针本质上是内存上的地址仍然可变
+	const int *pm = malloc(10);
+	printf("%p,%d\n", pm, *pm);
+	pm = &a;
+	printf("%p,%d\n", pm, *pm);
+
+	// c没有设计bool类型 可以使用stdbool.h扩展使用bool 本质上是宏
+	bool b1 = false;
+	printf("%d\n", b1);
+	b1 = 21; // 此时会自动转变为false(0)或true(非0)
+	printf("%d\n", b1);
+	// int g1 = b1 * 4;
+	// printf("%d\n", g1);
+
+	// c枚举本质上还是整数 可以赋值除已定义数值外的整数
+	enum BOOL b2 = FALSE;
+	printf("%d\n", b2);
+	b2 = 21;
+	printf("%d\n", b2);
+	// int g2= b2 * 4;
+	// printf("%d\n", g2);
+
+	// 表达式可以赋值但是不能被赋值
+	int v1, v2;
+	v1 = v2 = 100; // 等同于 v1 = (v2 = 100); 先对v2赋值 再将v2=100表达式结果赋值给v1
+	// (v1 = v2) = 50; // (v1 = v2)是一个表达式 无法对表达式赋值
+	printf("%d,%d\n", v1, v2);
+}
+
 void test0()
 {
 	puts("hello world");
@@ -54,7 +106,7 @@ void test0()
 	putchar('\n');
 
 	int c = 0;
-	if(c) // 0以外都是true
+	if (c) // 0以外都是true
 	{
 		puts("true");
 	}
@@ -69,33 +121,34 @@ void test0()
 	printf("非:%d,%hu\n", h4, h4);
 }
 
-void test1()
-{
-	char ch = 88;
-	int r1 = isalpha(ch);
-	printf("%c is alpha:%d\n", ch, r1);
-	int r2 = isblank(ch);
-	printf("%c is blank:%d\n", ch, r2);
-	int r3 = toupper(ch);
-	printf("%c uppercase is:%c\n", ch, r3);
-	int r4 = tolower(ch);
-	printf("%c lowercase is:%c\n", ch, r4);
+// void test1()
+// {
+// 	char ch = 88;
+// 	int r1 = isalpha(ch);
+// 	printf("%c is alpha:%d\n", ch, r1);
+// 	int r2 = isblank(ch);
+// 	printf("%c is blank:%d\n", ch, r2);
+// 	int r3 = toupper(ch);
+// 	printf("%c uppercase is:%c\n", ch, r3);
+// 	int r4 = tolower(ch);
+// 	printf("%c lowercase is:%c\n", ch, r4);
 
-	char *str = "kl86g65";
-	int r5 = strlen(str);
-	printf("%s length is:%d\n", str, r5);
-	int r6 = ht_str_len(str);
-	printf("%s length is:%d\n", str, r6);
-	int r7 = ht_str_cmp("NUL1", "NULL");
-	printf("compared is %d\n", r7);
-	int r8 = ht_str_2int("45264");
-	printf("transfer to %d\n",  r8);
-}
+// 	char *str = "kl86g65";
+// 	int r5 = strlen(str);
+// 	printf("%s length is:%d\n", str, r5);
+// 	int r6 = ht_str_len(str);
+// 	printf("%s length is:%d\n", str, r6);
+// 	int r7 = ht_str_cmp("NUL1", "NULL");
+// 	printf("compared is %d\n", r7);
+// 	int r8 = ht_str_2int("45264");
+// 	printf("transfer to %d\n", r8);
+// }
 
 int main(int argc, const char *argv[])
 {
 	// ext0();
-	test1();
+	ext1();
+	// test1();
 
 	return 0;
 }

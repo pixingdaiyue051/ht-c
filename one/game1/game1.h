@@ -5,7 +5,7 @@
 #include "obj.h"
 
 
-typedef struct MONSTER {
+typedef struct {
     Object proto;
     int hit_points;
 } Monster;
