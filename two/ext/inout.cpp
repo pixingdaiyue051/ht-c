@@ -1,3 +1,6 @@
+/**
+ * c++ 输入输出
+ */
 #include <iostream>
 #include <bitset>
 using namespace std;

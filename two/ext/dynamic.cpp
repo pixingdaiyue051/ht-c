@@ -60,4 +60,5 @@ int main(int argc, const char *argv[])
     Com b = {.i = 1, .j = 9};
     Com c = a + b; // 相当于c = operator+(a, b);或者c = add(a, b);
     printf("%-5d%-5d\n", c.i, c.j);
+    return 0;
 }
