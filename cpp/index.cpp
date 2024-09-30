@@ -10,20 +10,20 @@ using namespace std;
  */
 void io_fnt() {
 
-    // 默认按照十进制显，不论用什么进制赋值
-    int a = 1024;
-    cout << a << endl;
-    a = 0b0010000000000; // 0b开头表示使用二进制赋值
-    cout << a << endl;
-    a = 02000; // 0开头表示使用八进制赋值
-    cout << a << endl;
-    a = 0x400; // 0x开头表示使用十六进制赋值
-    cout << a << endl;
-
-    cout << "0b" << bitset<16>(a) << endl; // 二进制输出 使用bitset指定输出长度
-
-    cout << "0" << oct << a << endl; // 八进制输出
-    cout << "0x" << hex << a << endl; // 十六进制输出
+//    // 默认按照十进制显，不论用什么进制赋值
+//    int a = 1024;
+//    cout << a << endl;
+//    a = 0b0010000000000; // 0b开头表示使用二进制赋值
+//    cout << a << endl;
+//    a = 02000; // 0开头表示使用八进制赋值
+//    cout << a << endl;
+//    a = 0x400; // 0x开头表示使用十六进制赋值
+//    cout << a << endl;
+//
+//    cout << "0b" << bitset<16>(a) << endl; // 二进制输出 使用bitset指定输出长度
+//
+//    cout << "0" << oct << a << endl; // 八进制输出
+//    cout << "0x" << hex << a << endl; // 十六进制输出
 
 //    int num, data;
 //    cin >> num >> data; // 按照空格依次获取输入赋值num和data
@@ -33,6 +33,10 @@ void io_fnt() {
 //    cin >> str; // 可以最大输入str.max_size()字符
 //    cout << "string max len = " << str.max_size() << endl;
 //    cout << str << endl;
+    const int MAX_IN = 12;
+    char ch[MAX_IN], ch1[MAX_IN];
+    cin.getline(ch, MAX_IN).getline(ch1, MAX_IN);
+    cout << ch << "," << ch1 << endl;
 }
 
 #include <climits>
@@ -74,13 +78,22 @@ void ope_fnt() {
     // 基本数据类型
     cout << sizeof(int) << endl; // int 占4byte=32bit
     cout << CHAR_BIT << endl; // 1byte所占的bit数
-    cout << UCHAR_MAX << "," << USHRT_MAX << "," << UINT_MAX << "," << ULONG_MAX << "," << ULLONG_MAX << "," << endl;
-    cout << CHAR_MIN << "," << SHRT_MIN << "," << INT_MIN << "," << LONG_MIN << "," << LLONG_MIN << "," << endl;
-    cout << CHAR_MAX << "," << SHRT_MAX << "," << INT_MAX << "," << LONG_MAX << "," << LLONG_MAX << "," << endl;
+    cout << UCHAR_MAX << "," << USHRT_MAX << "," << UINT_MAX << "," << ULONG_MAX << "," << ULLONG_MAX << endl;
+    cout << CHAR_MIN << "," << SHRT_MIN << "," << INT_MIN << "," << LONG_MIN << "," << LLONG_MIN << endl;
+    cout << CHAR_MAX << "," << SHRT_MAX << "," << INT_MAX << "," << LONG_MAX << "," << LLONG_MAX << endl;
+//
+//    char s0 = 7;
+//    unsigned char s1 = 129;
+//    cout << s0 << "," << s1 << endl;
+//    cout.put(s0);
+//
+//    wchar_t c = L'6';
+//    char16_t c1 = u'3';
+//    char32_t c2 = U'H';
+//    cout << c << "," << c1 << "," << c2 << endl;
 
-    short s0 = 32768;
-    unsigned short s1 = 65536;
-    cout << s0 << "," << s1 << endl;
+
+    cout << 5 / 2 << "," << 5.0F / 2 << endl;
 }
 
 #include <cstdlib>
@@ -181,8 +194,8 @@ void inline_fnt() {
 
 int main(int argc, const char *argv[]) {
     cout << "hello world" << endl;
-//    io_fnt();
-    ope_fnt();
+    io_fnt();
+//    ope_fnt();
 //    ram_fnt();
 //    cast_fnt();
 //    params_fnt();

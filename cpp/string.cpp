@@ -15,11 +15,24 @@
 
 using namespace std;
 
+#include <cstring>
+
+void char_fnt() {
+    const int MAX_IN = 16;
+    char ch[MAX_IN] = "324325";
+    wchar_t ch1[MAX_IN] = L"4425453";
+    char16_t ch2[MAX_IN] = u"543gd";
+    char32_t ch3[MAX_IN] = U"2rfas";
+    cout << strlen(ch) << endl;
+    wcout << ch1 << endl;
+    cout << ch << "," << ch2 << "," << ch3 << endl;
+    char rs[] = R"(sgP{}:":$(*())))))、dgfd\vew、你、r\t\y\n\o\p\b\e\xrfdJJM||"c"a)";
+    cout << rs << endl;
+}
+
+
 #include <vector>
 
-/**
- * vector 代替数组
- */
 void vector_fnt() {
     vector<int> vi;
     vi.reserve(10);
@@ -38,31 +51,37 @@ void vector_fnt() {
     cout << vi.size() << endl << vi.max_size() << endl << vi.capacity() << endl;
 }
 
-void str_fnt() {
-    string s1 = "334ff";
-    string s2("oigbmvcxgxbbv");
-    string s3 = s1 + s2; // 重载+操作 连接字符串
-    cout << s1 << s2 << s3 << endl;
+#include <string>
 
-    string s4 = s3 + s2 + s1;
-    cout << s4 << ",s4.length=" << s4.length() << ",s4.size=" << s4.size() << endl;   // 字符串长度
-    const char *str = s4.c_str();   // 获得c风格的字符串
-    cout << str << endl;
-    string s5 = s4.substr(4, 3);    // 截取子字符串 从第5个字符位置开始截取3个字符
-    cout << s5 << endl;
-    int d1 = s4.find("4f");    // 从s4中查找fv第一个出现的索引 如果没有则返回-1 默认从第一个位置开始搜索 可以指定开始搜索的位置
-    cout << d1 << endl;
-    s4.swap(s1);    // 将s4替换成s1
-    cout << s1 << "," << s4 << endl;
-    s4.insert(2, "0000");   // 在第3个位置前插入其他字符串
-    cout << s4 << endl;
-    s4.replace(2, 3, "*******");    // 从第3个位置开始使用*******替换3个字符串
-    cout << s4 << endl;
-    int d2 = s4.compare("33*******04ff");  // 比较两个字符串 如果相等就返回0
-    cout << d2 << endl;
+void str_fnt() {
+//    string s1 = "334ff";
+//    string s2("oigbmvcxgxbbv");
+//    string s3 = s1 + s2; // 重载+操作 连接字符串
+//    cout << s1 << s2 << s3 << endl;
+//
+//    string s4 = s3 + s2 + s1;
+//    cout << s4 << ",s4.length=" << s4.length() << ",s4.size=" << s4.size() << endl;   // 字符串长度
+//    const char *str = s4.c_str();   // 获得c风格的字符串
+//    cout << str << endl;
+//    string s5 = s4.substr(4, 3);    // 截取子字符串 从第5个字符位置开始截取3个字符
+//    cout << s5 << endl;
+//    int d1 = s4.find("4f");    // 从s4中查找fv第一个出现的索引 如果没有则返回-1 默认从第一个位置开始搜索 可以指定开始搜索的位置
+//    cout << d1 << endl;
+//    s4.swap(s1);    // 将s4替换成s1
+//    cout << s1 << "," << s4 << endl;
+//    s4.insert(2, "0000");   // 在第3个位置前插入其他字符串
+//    cout << s4 << endl;
+//    s4.replace(2, 3, "*******");    // 从第3个位置开始使用*******替换3个字符串
+//    cout << s4 << endl;
+//    int d2 = s4.compare("33*******04ff");  // 比较两个字符串 如果相等就返回0
+//    cout << d2 << endl;
+    string rs = R"(u"k"\njk\tj\rff ":\n|" "\n" fa)"; // 字符串 ()内容原本输出不专转义
+    cout << rs << endl;
 }
 
 int main(int argc, const char *argv[]) {
-    str_fnt();
+    char_fnt();
+//    vector_fnt();
+//    str_fnt();
     return 0;
 }
