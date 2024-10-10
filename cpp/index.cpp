@@ -28,15 +28,34 @@ void io_fnt() {
 //    int num, data;
 //    cin >> num >> data; // 按照空格依次获取输入赋值num和data
 //    cout << "num=" << num << ",data=" << data << endl;
-//
-//    string str;
-//    cin >> str; // 可以最大输入str.max_size()字符
-//    cout << "string max len = " << str.max_size() << endl;
-//    cout << str << endl;
-    const int MAX_IN = 12;
-    char ch[MAX_IN], ch1[MAX_IN];
-    cin.getline(ch, MAX_IN).getline(ch1, MAX_IN);
-    cout << ch << "," << ch1 << endl;
+
+//    const int MAX_IN = 12;
+//    char ch[MAX_IN], ch1[MAX_IN];
+//    cin.getline(ch, MAX_IN).getline(ch1, MAX_IN);
+//    cout << ch << "," << ch1 << endl;
+
+    char ch = '1';
+    int len = 0;
+
+    do {
+        cin.get(ch);
+        cout << ch;
+        ++len;
+    } while (ch != '#'); // 检测输入不是特殊输入字符
+
+//    do {
+//        cin.get(ch);
+//        cout << ch;
+//        ++len;
+//    } while (!cin.fail()); // 检测EOF cin.eof() 或 cin.fail() 一般为CRTL+Z 然后ENTER就是EOF
+
+//    while(cin.get(ch)) {
+//        cout << ch;
+//        ++len;
+//    }
+
+    cout << "len=" << len << endl;
+
 }
 
 #include <climits>
@@ -101,6 +120,7 @@ void ope_fnt() {
 
 /**
  * 内存的分配与销毁 new/delete  malloc/free
+ * 使用new malloc创建的内存 会在运行时才创建 动态编译
  */
 void ram_fnt() {
     char *p1 = new char('m'); // 创建并分配内存
